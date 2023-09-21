@@ -1,0 +1,24 @@
+CString m_date;  // 输入的日期字符串 
+CString m_result; // 处理后的结果
+
+void ProcessDateString(CString date)
+{
+  m_date = date;
+  
+  int pos1 = m_date.Find('/');
+  int pos2 = m_date.Find('/', pos1+1);
+
+  CString year = m_date.Mid(0, pos1);
+  CString month = m_date.Mid(pos1+1, pos2-pos1-1); 
+  CString day = m_date.Mid(pos2+1);
+
+  month.Format("%02d", atoi(month)); 
+  day.Format("%02d", atoi(day));
+
+  m_result.Format("%s-%s-%s", year, month, day);
+}
+
+CString date = "2023/9/5";
+ProcessDateString(date); 
+
+// m_result现在为"2023-09-05"
